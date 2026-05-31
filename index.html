@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>.195</title>
+    <meta name="application-name" content=".195" />
+    <meta property="og:title" content=".195" />
+    <meta name="twitter:title" content=".195" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -25,6 +28,13 @@
         overflow: hidden;
       }
 
+      :root {
+        /* Focal point sits below the viewport; radius reaches the top edge */
+        --glow-center-below: 80vh;
+        --glow-radius: calc(100vh + var(--glow-center-below));
+        --glow-blur: 0vh;
+      }
+
       body {
         background-color: #000128;
         font-family: "Arvo", serif;
@@ -41,21 +51,19 @@
         overflow: hidden;
       }
 
-      .glow {
+      .page::before {
+        content: "";
         position: absolute;
-        left: 50%;
-        bottom: -25%;
-        width: 960px;
-        height: 960px;
-        transform: translate(-50%, 50%);
-        border-radius: 75%;
+        inset: 0;
         background: radial-gradient(
-          circle at center,
-          #ea8e5f 50%,
-          #a2638a 75%,
-          #523a86 100%
+          circle var(--glow-radius) at 50% calc(100% + var(--glow-center-below)),
+          #ea8e5f 0%,
+          #ea8e5f 40%,
+          #a2638a 50%,
+          #523a86 65%,
+          #000128 100%
         );
-        filter: blur(150px);
+        filter: blur(var(--glow-blur));
         pointer-events: none;
       }
 
@@ -76,7 +84,6 @@
   </head>
   <body>
     <main class="page">
-      <div class="glow" aria-hidden="true"></div>
       <h1 class="title">.195</h1>
     </main>
   </body>
