@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>.195</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arvo:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html,
+      body {
+        height: 100%;
+        overflow: hidden;
+      }
+
+      body {
+        background-color: #20191a;
+        font-family: "Arvo", serif;
+        font-weight: 600;
+      }
+
+      .page {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .glow {
+        position: absolute;
+        left: 50%;
+        bottom: -25%;
+        width: 960px;
+        height: 960px;
+        transform: translate(-50%, 50%);
+        border-radius: 75%;
+        background: radial-gradient(
+          circle at center,
+          #f7bc29 0%,
+          #9d3e03 100%
+        );
+        filter: blur(100px);
+        pointer-events: none;
+      }
+
+      .title {
+        position: relative;
+        z-index: 1;
+        color: #20191a;
+        font-weight: 400;
+        font-synthesis: none;
+        font-size: clamp(8rem, 44vw, 1280pt);
+        line-height: 1;
+        letter-spacing: -0.02em;
+        white-space: nowrap;
+        max-width: 100%;
+        padding: 0 0.05em;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <div class="glow" aria-hidden="true"></div>
+      <h1 class="title">.195</h1>
+    </main>
+  </body>
+</html>
