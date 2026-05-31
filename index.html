@@ -28,11 +28,50 @@
         overflow: hidden;
       }
 
+      @property --stop-peach {
+        syntax: "<percentage>";
+        inherits: false;
+        initial-value: 0%;
+      }
+
+      @property --stop-mauve {
+        syntax: "<percentage>";
+        inherits: false;
+        initial-value: 0%;
+      }
+
+      @property --stop-purple {
+        syntax: "<percentage>";
+        inherits: false;
+        initial-value: 0%;
+      }
+
+      @property --stop-dark {
+        syntax: "<percentage>";
+        inherits: false;
+        initial-value: 0%;
+      }
+
+      @property --glow-blur {
+        syntax: "<length>";
+        inherits: false;
+        initial-value: 0vh;
+      }
+
       :root {
         /* Focal point sits below the viewport; radius reaches the top edge */
         --glow-center-below: 80vh;
         --glow-radius: calc(100vh + var(--glow-center-below));
-        --glow-blur: 0vh;
+      }
+
+      @keyframes glow-ramp {
+        to {
+          --stop-peach: 40%;
+          --stop-mauve: 50%;
+          --stop-purple: 65%;
+          --stop-dark: 100%;
+          --glow-blur: 0vh;
+        }
       }
 
       body {
@@ -55,16 +94,29 @@
         content: "";
         position: absolute;
         inset: 0;
-        background: radial-gradient(
+        background-color: #000128;
+        background-image: radial-gradient(
           circle var(--glow-radius) at 50% calc(100% + var(--glow-center-below)),
           #ea8e5f 0%,
-          #ea8e5f 40%,
-          #a2638a 50%,
-          #523a86 65%,
-          #000128 100%
+          #ea8e5f var(--stop-peach),
+          #a2638a var(--stop-mauve),
+          #523a86 var(--stop-purple),
+          #000128 var(--stop-dark)
         );
         filter: blur(var(--glow-blur));
+        animation: glow-ramp 3s ease-out forwards;
         pointer-events: none;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        .page::before {
+          animation: none;
+          --stop-peach: 40%;
+          --stop-mauve: 50%;
+          --stop-purple: 65%;
+          --stop-dark: 100%;
+          --glow-blur: 0vh;
+        }
       }
 
       .title {
